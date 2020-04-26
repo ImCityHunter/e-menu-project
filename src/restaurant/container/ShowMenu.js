@@ -1,17 +1,14 @@
 import React from "react";
-import ShowMenuItem from "../component/inStoreOrder/ShowMenuItem";
+import ShowMenuItem from "../component/editMenu/ShowMenuItem";
 import menuService from "../../service/menuService";
 import {Link} from "react-router-dom";
 class ShowMenu extends React.Component {
     state = {
-        menu:[
-        ]
+
     }
 
     componentDidMount() {
-        menuService.findMenuByRestaurantId(this.props.rid).
-            then(menu=> this.setState({menu: menu}
-        ));
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -24,10 +21,7 @@ class ShowMenu extends React.Component {
                 <h1> Restaurant </h1>
                 <h2> Your Current Menu</h2>
                 <br />
-                <ShowMenuItem
-                    rid={this.props.rid}
-                    menu={this.state.menu}
-                />
+                <ShowMenuItem rid={this.props.rid}/>
                 <Link to={`/restaurant/${this.props.rid}/menu/edit-menu`} className={"btn btn-danger"}> Edit Menu </Link>
                 <button className={"btn btn-warning float-right"} onClick={()=>this.props.history.push(`/restaurant/${this.props.rid}`)}> Back </button>
 

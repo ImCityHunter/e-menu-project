@@ -4,6 +4,8 @@ import menuService from "../../service/menuService";
 import ShowOrderMenu from "../component/inStoreOrder/ShowOrderMenu";
 import ViewCart from "./ViewCart";
 import CheckOutComponent from "../component/inStoreOrder/CheckOutComponent";
+import orderService from "../../service/orderService";
+import userService from "../../service/userService";
 class InStoreOrder extends React.Component{
 
     state = {
@@ -52,6 +54,13 @@ class InStoreOrder extends React.Component{
         })
 
     }
+
+    payment = (rid,username,newOrder) =>{
+        orderService.createOrder(rid, username, newOrder)
+            .then(status=> console.log(status));
+        userService.logout()
+            .then(response => this.props.history.push('/'));
+    }
     render(){
         return(
             <div className={"container"}>
@@ -94,6 +103,7 @@ class InStoreOrder extends React.Component{
                         total={this.state.total}
                         order={this.state.order}
                         rid={this.props.rid}
+                        payment={this.payment}
                         />
                 }
             </div>

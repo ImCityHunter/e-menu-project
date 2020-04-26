@@ -3,7 +3,16 @@ import userService from "../service/userService";
 class Login extends React.Component{
     login = () => {
         userService.login(this.state.user)
-        this.props.history.push('/profile')
+            .then(status=>
+
+                {
+                    console.log( "log in status: " + status);
+                    this.props.history.push('/profile')
+                }
+
+
+            )
+
     }
 
 

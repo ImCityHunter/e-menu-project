@@ -1,8 +1,8 @@
+import {server_url} from "./url";
 
 
-//let local_url = "http://localhost:8080";
-let local_url = "https://yu2749luca-spring-boot-server.herokuapp.com";
-let restaurant_menu_url = (rid) => `${local_url}/api/restaurants/${rid}/menu`;
+let restaurant_menu_url = (rid) => `${server_url}/api/restaurants/${rid}/menu`;
+let meal_url = (mid) => `${server_url}/api/meals/${mid}`;
 
 export const findMenuByRestaurantId = (rid) => {
     let testRid = parseInt(rid);
@@ -12,7 +12,17 @@ export const findMenuByRestaurantId = (rid) => {
     return fetch(restaurant_menu_url(rid)).then(response=>response.json());
 }
 
-export const updateMeal = (mid) => {
+export const updateMeal = (mid, meal) => {
+    let parse = parseInt(mid);
+    return fetch(meal_url(parse), {
+        method: 'PUT',
+        body: JSON.stringify(meal),
+        credentials: "include",
+        headers:{
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+
 
 }
 

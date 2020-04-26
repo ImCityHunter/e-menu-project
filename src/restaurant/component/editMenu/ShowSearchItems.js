@@ -3,6 +3,9 @@ import React from 'react';
 
 
 class ShowSearchItems extends React.Component{
+    state = {
+        selectedId:''
+    }
     render(){
         return(
             <div>

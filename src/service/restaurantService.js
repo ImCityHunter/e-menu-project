@@ -1,8 +1,7 @@
+import {server_url} from "./url";
 
 
-//let local_url = "http://localhost:8080";
-let local_url = "https://yu2749luca-spring-boot-server.herokuapp.com";
-let restaurant_url = (rid) => `${local_url}/api/restaurants/${rid}`;
+let restaurant_url = (rid) => `${server_url}/api/restaurants/${rid}`;
 
 
 export const findRestaurant = (rid)=>{

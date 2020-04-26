@@ -2,7 +2,7 @@ import React from 'react';
 import userService from "../service/userService";
 class Register extends React.Component{
     register = ()=> {
-        if(this.state.user.password!==this.state.user.validPassword){
+        if(this.state.user.password!==this.state.validPassword){
             alert("ensure passwords are the same");
         }
         else if(this.state.user.username===null || this.state.user.username==""){
@@ -17,7 +17,7 @@ class Register extends React.Component{
         else{
             userService.register(this.state.user)
                 .then(status=>{
-                    if(status){
+                    if(status===1){
                         this.props.history.push('/profile')
 
                     } else{
@@ -29,12 +29,11 @@ class Register extends React.Component{
 
     state = {
         user:{
-            username:'',
-            password: '',
-            validPassword: '',
-            id:'', //do not use this
-            type: ''
-        }
+            username:"",
+            password: "",
+            type: ""
+        },
+        validPassword: ""
     }
     render(){
         return(
@@ -46,7 +45,7 @@ class Register extends React.Component{
 
                 <form>
                     <div className="form-group row">
-                        <label htmlFor={this.state.user.username} className="col-sm-2 col-form-label">Username</label>
+                        <label className="col-sm-2 col-form-label">Username</label>
                         <div className="col-sm-10">
                             <input className={"form-control"} placeholder="username" value={this.state.user.username} onChange={(e)=>{
                                 let username = e.target.value;
@@ -58,7 +57,7 @@ class Register extends React.Component{
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label htmlFor={this.state.user.password} className="col-sm-2 col-form-label">Password</label>
+                        <label className="col-sm-2 col-form-label">Password</label>
                         <div className="col-sm-10">
                             <input className={"form-control"}
                                    type="password"
@@ -73,17 +72,14 @@ class Register extends React.Component{
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor={this.state.user.validPassword} className="col-sm-2 col-form-label">Valid Password</label>
+                        <label className="col-sm-2 col-form-label">Valid Password</label>
                         <div className="col-sm-10">
-                            <input className={"form-control"} placeholder="valid password" value={this.state.user.validPassword}
+                            <input className={"form-control"} placeholder="valid password" value={this.state.validPassword}
                                    type="password"
                                    onChange={(e) => {
                                        let validPassword = e.target.value;
                                        this.setState(prevState => ({
-                                           user: {
-                                               ...prevState.user,
-                                               validPassword: validPassword
-                                           }
+                                           validPassword:validPassword
                                        }))
                                    }}/>
                         </div>

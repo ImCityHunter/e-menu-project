@@ -20,8 +20,9 @@ class Profile extends React.Component{
         userService.currentUser()
             .then(currentUser =>
                 this.setState({
-                    currentUser: currentUser
-        }))
+                    currentUser:currentUser
+                })
+            )
     }
 
     editing = () => {
@@ -124,7 +125,7 @@ class Profile extends React.Component{
                     </ul>
                     <br/>
                     {
-                        !this.state.editing && this.state.currentUser.type === "RESTAURANT" &&
+                        !this.state.editing && this.state.currentUser.restaurant &&
                         <ul className={"list-group list-group-horizontal"}>
                             <Link to={`/restaurant/${this.state.currentUser.restaurant.id}`}
                                   className={"btn btn-info btn-block"}>

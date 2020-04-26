@@ -10,10 +10,11 @@ class CheckOutComponent extends React.Component{
     }
 
     makeAPayment = () => {
-        let newOrder = {cost: this.state.total, date: new Date().getDate()}
-        orderService.createOrder(this.props.rid, this.state.username, newOrder)
-            .then(status=> console.log(status));
-        userService.logout().then(response => this.props.history.push('/'));
+        let today = new Date();
+        let date = today.getFullYear()+"/"+today.getMonth()+"/"+today.getDate();
+        let newOrder = {cost: this.state.total}
+        console.log("order date: "+ today.getFullYear()+"/"+today.getMonth()+"/"+today.getDate());
+        this.props.payment(this.props.rid,this.state.username,newOrder);
     }
 
     render(){
