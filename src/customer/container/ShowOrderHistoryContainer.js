@@ -14,12 +14,18 @@ class ShowOrderHistoryContainer extends React.Component{
         }))
     }
 
+    back = () => {
+        this.props.history.push('/profile');
+    }
     render(){
         return(
             <div className={"container text-center"}>
                 <h2>Show Completed Orders</h2>
-                <Link to={`/customer/${this.props.cid}`}
-                      className={"btn btn-warning btn-block"}>Back</Link>
+                {/*<Link to={`/customer/${this.props.cid}`}*/}
+                {/*      className={"btn btn-warning btn-block"}>Back</Link>*/}
+                <button onClick={()=>this.back()} className={"btn btn-warning btn-block"}>
+                    Back
+                </button>
                 <br />
                 <CardColumns>
                     {

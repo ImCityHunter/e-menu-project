@@ -54,36 +54,37 @@ class Profile extends React.Component{
                     </ul>
 
                     <ul className={"list-group list-group-horizontal"}>
-                        <li className={`list-group-item col-4 ${this.state.editing?'active':''}`}>First Name</li>
+                        <li className={`list-group-item col-4`}>First Name</li>
                         {
                             !this.state.editing && <li className={"list-group-item col-8 text-right"}>{this.state.currentUser.firstName}</li>
                         }
                         {
                             this.state.editing &&
-
-                            <input className={"list-group-item col-8 text-right"}
-                                   placeholder="editing first name" value={this.state.currentUser.firstName}
-                                   onChange={(e) => {
-                                       let firstName = e.target.value;
-                                        this.setState(prevState => ({
-                                            currentUser: {
-                                                 ...prevState.currentUser,
-                                                firstName: firstName
-                                             }
-                                         }))
-                            }}/>
+                            <li className={`list-group-item col-8 text-right ${this.state.editing?'active':''}`}>
+                                <input
+                                       placeholder="editing first name" value={this.state.currentUser.firstName}
+                                       onChange={(e) => {
+                                           let firstName = e.target.value;
+                                            this.setState(prevState => ({
+                                                currentUser: {
+                                                     ...prevState.currentUser,
+                                                    firstName: firstName
+                                                 }
+                                             }))
+                                }}/>
+                            </li>
                         }
                     </ul>
 
                     <ul className={"list-group list-group-horizontal"}>
-                        <li className={`list-group-item col-4 ${this.state.editing?'active':''}`}>Last Name</li>
+                        <li className={`list-group-item col-4`}>Last Name</li>
                         {
                             !this.state.editing && <li className={"list-group-item col-8 text-right"}>{this.state.currentUser.lastName}</li>
                         }
                         {
                             this.state.editing &&
-
-                            <input className={"list-group-item col-8 text-right"}
+                            <li className={`list-group-item col-8 text-right ${this.state.editing?'active':''}`}>
+                                <input
                                    placeholder="editing lastname" value={this.state.currentUser.lastName}
                                    onChange={(e) => {
                                        let lastName = e.target.value;
@@ -94,6 +95,7 @@ class Profile extends React.Component{
                                            }
                                        }))
                                    }}/>
+                            </li>
                         }
                     </ul>
 
@@ -103,14 +105,14 @@ class Profile extends React.Component{
                     </ul>
 
                     <ul className={"list-group list-group-horizontal"}>
-                        <li className={`list-group-item col-4 ${this.state.editing?'active':''}`}>Your Phone</li>
+                        <li className={`list-group-item col-4`}>Your Phone</li>
                         {
                             !this.state.editing && <li className={"list-group-item col-8 text-right"}>{this.state.currentUser.phone}</li>
                         }
                         {
                             this.state.editing &&
-
-                            <input className={"list-group-item col-8 text-right"}
+                            <li className={`list-group-item col-8 text-right ${this.state.editing ? 'active' : ''}`}>
+                            <input
                                    placeholder="editing phone" value={this.state.currentUser.phone}
                                    onChange={(e) => {
                                        let phone = e.target.value;
@@ -121,6 +123,7 @@ class Profile extends React.Component{
                                            }
                                        }))
                                    }}/>
+                            </li>
                         }
                     </ul>
                     <br/>
@@ -136,7 +139,7 @@ class Profile extends React.Component{
                     {
                         !this.state.editing && this.state.currentUser.type === "CUSTOMER" &&
                         <ul className={"list-group list-group-horizontal"}>
-                            <Link to={`/customer/${this.state.currentUser.id}`}
+                            <Link to={`/customer/${this.state.currentUser.id}/orderhistory`}
                                   className={"btn btn-info btn-block"}>
                                 Check Your Customer Profile
                             </Link>
