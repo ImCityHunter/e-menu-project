@@ -1,7 +1,7 @@
 import {server_url} from "./url";
 
 let order_post_url = (rid,username) => `${server_url}/api/${rid}/${username}/orders`;
-let order_imcomplete_url = (rid) => `${server_url}/api/restaurants/${rid}/orders/completed`;
+let order_imcomplete_url = (rid) => `${server_url}/api/restaurants/${rid}/orders/incomplete`;
 let order_update_incomplete_url = (order_id)=> `${server_url}/api/orders/${order_id}/incomplete`;
 let user_completed_orders_url=(cid)=>`${server_url}/api/users/${cid}/orders/completed`;
 const createOrder = (rid,username, order) =>{
@@ -18,7 +18,10 @@ const createOrder = (rid,username, order) =>{
 }
 
 const getAllIncompleteOrdersForRestaurant = (rid) =>
-    fetch(order_imcomplete_url(rid)).then(response=>response.json())
+{
+    console.log(order_imcomplete_url(rid));
+    return fetch(order_imcomplete_url(rid)).then(response=>response.json())
+}
 
 const updateAnIncompleteOrder = (order_id) => {
     console.log(order_update_incomplete_url(order_id));
