@@ -138,7 +138,7 @@ class Profile extends React.Component{
                         <ul className={"list-group list-group-horizontal"}>
                             <Link to={`/customer/${this.state.currentUser.id}`}
                                   className={"btn btn-info btn-block"}>
-                                See Your Order History
+                                Check Your Customer Profile
                             </Link>
                         </ul>
                     }

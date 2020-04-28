@@ -1,9 +1,9 @@
 import React from "react";
-import recipeService from "../../../service/recipeService";
-import SearchItem from "./SearchItem";
-import ShowSearchItems from "./ShowSearchItems";
-import menuService from "../../../service/menuService";
-class EditMenu extends React.Component {
+import recipeService from "../../service/recipeService";
+import SearchItem from "../component/editMenu/SearchItem";
+import ShowAllSearchItems from "../component/editMenu/ShowAllSearchItems";
+import menuService from "../../service/menuService";
+class EditMenuContainer extends React.Component {
     state = {
         price: '',
         newMealName:'',
@@ -85,7 +85,7 @@ class EditMenu extends React.Component {
                                 }
                             )
                         }}/>
-                    <ShowSearchItems
+                    <ShowAllSearchItems
                         foods = {this.state.foods}
                         addItem = {this.addItem}/>
 
@@ -96,4 +96,4 @@ class EditMenu extends React.Component {
     }
 }
 
-export default EditMenu;
+export default EditMenuContainer;

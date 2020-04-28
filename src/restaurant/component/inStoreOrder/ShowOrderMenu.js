@@ -1,22 +1,27 @@
 import React  from "react";
 import ShowOrderMenuCard from "./ShowOrderMenuCard";
+import {CardDeck, CardColumns} from 'react-bootstrap';
+import ShowInStoreMenuCard from "./ShowInStoreMenuCard";
+
 
 class ShowOrderMenu extends React.Component{
 
-
-    state = {
-        order:[
-        ],
-    }
-
     render() {
         return(
-            <div>
+            <div className={"container"}>
+                <br/>
                 <h1> Restaurant Menu</h1>
-                <div className={"container row"}>
+                <CardColumns>
                     {
                         this.props.menu && this.props.menu.map(meal=>
-                            <ShowOrderMenuCard
+                            // <ShowOrderMenuCard
+                            //     meal={meal}
+                            //     key={meal.id}
+                            //     addItemInOrder={this.props.addItemInOrder}
+                            //     order={this.props.order}
+                            // />
+
+                            <ShowInStoreMenuCard
                                 meal={meal}
                                 key={meal.id}
                                 addItemInOrder={this.props.addItemInOrder}
@@ -24,7 +29,7 @@ class ShowOrderMenu extends React.Component{
                             />
                         )
                     }
-                </div>
+                </CardColumns>
             </div>
         )
     }

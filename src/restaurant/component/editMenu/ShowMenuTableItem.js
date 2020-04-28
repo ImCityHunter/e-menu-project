@@ -1,7 +1,7 @@
 import React  from "react";
-import MenuItemTableList from "./MenuItemTableList";
+import ShowMenuRowItem from "./ShowMenuRowItem";
 import menuService from "../../../service/menuService";
-export default class ShowMenuItem extends React.Component {
+export default class ShowMenuTableItem extends React.Component {
 
 
     state = {
@@ -37,14 +37,14 @@ export default class ShowMenuItem extends React.Component {
             <div className={"container-fluid"}>
                 <div>
                     <ul className={"list-group list-group-horizontal"}>
-                        <li className={"list-group-item col-2 text-center"}>Meal Name</li>
-                        <li className={"list-group-item col-7 text-center"}>Food Content</li>
-                        <li className={"list-group-item col-2 text-center"}>Price</li>
-                        <li className={"list-group-item col-1 text-center"}>Edit</li>
+                        <li className={"list-group-item col-2 text-center list-group-item-dark"}>Meal Name</li>
+                        <li className={"list-group-item col-7 text-center list-group-item-dark"}>Food Content</li>
+                        <li className={"list-group-item col-2 text-center list-group-item-dark"}>Price</li>
+                        <li className={"list-group-item col-1 text-center list-group-item-dark"}>Edit</li>
                     </ul>
                     {
                         this.state.menu && this.state.menu.map(item=>
-                            <MenuItemTableList
+                            <ShowMenuRowItem
                                 item={item}
                                 key={item.id}
                                 save={this.save}

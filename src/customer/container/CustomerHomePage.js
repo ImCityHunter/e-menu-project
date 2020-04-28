@@ -2,6 +2,8 @@
 
 import React from 'react';
 import userService from "../../service/userService";
+import {Link} from "react-router-dom";
+
 class CustomerHomePage extends React.Component {
     render() {
         return (
@@ -17,7 +19,11 @@ class CustomerHomePage extends React.Component {
                     <li className={"list-group-item col-8 text-right"}>Last Name</li>
                 </ul>
 
-                <button className={"float-right btn btn-danger"} onClick={
+
+                <Link to={`/customer/${this.props.cid}/orderhistory`} className={"btn btn-info btn-block"}>
+                    Check Order History
+                </Link>
+                <button className={"float-right btn btn-danger btn-block"} onClick={
                     ()=>userService.logout().then(response => this.props.history.push('/'))}>log out</button>
             </div>
         )

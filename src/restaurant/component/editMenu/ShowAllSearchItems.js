@@ -2,10 +2,7 @@ import React from 'react';
 
 
 
-class ShowSearchItems extends React.Component{
-    state = {
-        selectedId:''
-    }
+class ShowAllSearchItems extends React.Component{
     render(){
         return(
             <div>
@@ -34,6 +31,6 @@ class ShowSearchItems extends React.Component{
     }
 }
 
-export default ShowSearchItems;
+export default ShowAllSearchItems;
 
 

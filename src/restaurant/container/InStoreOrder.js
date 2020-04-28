@@ -9,11 +9,16 @@ import userService from "../../service/userService";
 class InStoreOrder extends React.Component{
 
     state = {
-        order:[],
+        order:{
+            orderedMeals:[
+
+            ],
+            cost:0
+        },
         menu:[],
-        total:0,
         viewCart:false,
-        checkout:false
+        checkout:false,
+        temp:0
     }
 
     paying = () => {
@@ -30,52 +35,55 @@ class InStoreOrder extends React.Component{
     }
 
     addItemInOrder=(meal, count)=>{
+        let OrderedMeal = {id: this.state.temp,mealName:meal.name, count: count, price: meal.price};
         this.setState(prevState=>({
-            order:[
-                ...prevState.order,
-                {id: meal.id, name:meal.name, count: count, price:meal.price, kcal: meal.kcal}
-            ]
+            order: {
+                orderedMeals: [
+                    ...prevState.order.orderedMeals,
+                    OrderedMeal
+                ],
+                cost: prevState.order.cost + parseFloat(meal.price)* parseInt(count)
+            },
+            temp: prevState.temp+1
         }))
     }
 
+    back = () => {
+        this.props.history.push('/profile')
+    }
+
     checkout =()=>{
-        let total = 0;
-        for(let i=0; i < this.state.order.length; i++){
-            let item = this.state.order[i];
-            let price = item.price;
-            let count = item.count;
-            if(count > 0){
-                total=total+(price*count);
-            }
-        }
         this.setState({
             checkout:true,
-            total:total
         })
 
     }
 
-    payment = (rid,username,newOrder) =>{
-        orderService.createOrder(rid, username, newOrder)
-            .then(status=> console.log(status));
-        userService.logout()
-            .then(response => this.props.history.push('/'));
+    payment = (rid,username) =>{
+        orderService.createOrder(rid, username, this.state.order)
+            .then(status=> {
+                console.log(status);
+                this.props.history.push(`/profile`);
+            })
     }
     render(){
         return(
             <div className={"container"}>
-                <h1> In Store Order </h1>
+                <h1 className={"text-center"}> In Store Order </h1>
+
+                <button onClick={()=>this.back()} className={"btn btn-danger"}>Back</button>
+
                 {
                     !this.state.viewCart && !this.state.checkout &&
                     <button
                         onClick={()=>this.paying()}
-                        className={"float-right btn btn-warning"}> view-cart </button>
+                        className={"float-right btn btn-warning"}> View-cart </button>
                 }
                 {
                     this.state.viewCart && !this.state.checkout &&
                     <button
                         onClick={()=>this.paying()}
-                        className={"float-right btn btn-warning"}> view-menu </button>
+                        className={"float-right btn btn-warning"}> View-menu </button>
                 }
                 {
                     !this.state.viewCart && !this.state.checkout &&
@@ -89,7 +97,8 @@ class InStoreOrder extends React.Component{
                 }
                 {
                     this.state.viewCart && !this.state.checkout &&
-                    <ViewCart order={this.state.order}/>
+                    <ViewCart
+                        orderedMeals={this.state.order.orderedMeals}/>
 
                 }
                 {
@@ -101,7 +110,7 @@ class InStoreOrder extends React.Component{
                     this.state.checkout &&
                     <CheckOutComponent
                         total={this.state.total}
-                        order={this.state.order}
+                        orderedMeals={this.state.order.orderedMeals}
                         rid={this.props.rid}
                         payment={this.payment}
                         />

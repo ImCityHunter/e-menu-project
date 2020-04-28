@@ -10,11 +10,7 @@ class CheckOutComponent extends React.Component{
     }
 
     makeAPayment = () => {
-        let today = new Date();
-        let date = today.getFullYear()+"/"+today.getMonth()+"/"+today.getDate();
-        let newOrder = {cost: this.state.total}
-        console.log("order date: "+ today.getFullYear()+"/"+today.getMonth()+"/"+today.getDate());
-        this.props.payment(this.props.rid,this.state.username,newOrder);
+        this.props.payment(this.props.rid,this.state.username);
     }
 
     render(){

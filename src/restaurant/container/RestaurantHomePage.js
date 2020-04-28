@@ -19,16 +19,18 @@ class RestaurantHomePage extends React.Component {
         );
     }
     logout = () => {
-        fetch('http://localhost:8080/logout', {
-            method: 'POST',
-            credentials: "include"
-        }).then(response => this.props.history.push('/'));
+        userService.logout().then(response => this.props.history.push('/'));
     }
     editing = ()=>{
         this.setState({
             editing:true
         })
     }
+
+    back = () => {
+        this.props.history.push('/profile')
+    }
+
     save = ()=>{
         restaurantService.updateRestaurant(this.props.rid, this.state.restaurant)
             .then(status=> alert("update status "+status))
@@ -36,8 +38,6 @@ class RestaurantHomePage extends React.Component {
                 editing:false
             })
         )
-
-
     }
     render(){
         return(
@@ -51,6 +51,7 @@ class RestaurantHomePage extends React.Component {
                     <button
                         onClick={()=>this.props.history.push('/profile')}
                         className={"btn btn-warning btn-block"}>Back To User Profile</button>
+                    <Link to={`/restaurant/${this.props.rid}/incompleteOrders`} className={"btn btn-dark btn-block"}>Incomplete Orders</Link>
                     <Link to={`/restaurant/${this.props.rid}/menu`} className={"btn btn-success btn-block"}>Change Menu</Link>
                 </div>
                 <br/>

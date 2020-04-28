@@ -2,7 +2,14 @@ import React from 'react'
 class ViewCart extends React.Component{
 
     state = {
-        order: this.props.order
+        orderedMeals:this.props.orderedMeals
+    }
+
+
+    componentDidMount() {
+        this.setState({
+            orderedMeals:this.props.orderedMeals
+        })
     }
 
     render(){
@@ -15,11 +22,11 @@ class ViewCart extends React.Component{
                     <li className={"list-group-item col-4 text-center"}>count</li>
                 </ul>
                 {
-                    this.state.order && this.state.order.map(meal=>
-                        <ul className={"list-group list-group-horizontal"} key={meal.id}>
-                            <li className={"list-group-item col-4"}>{meal.name}</li>
-                            <li className={"list-group-item col-4 text-center"}>{meal.price}</li>
-                            <li className={"list-group-item col-4 text-center"}>{meal.count}</li>
+                    this.state.orderedMeals && this.state.orderedMeals.map(orderedMeal=>
+                        <ul className={"list-group list-group-horizontal"} key={orderedMeal.id}>
+                            <li className={"list-group-item col-4"}>{orderedMeal.mealName}</li>
+                            <li className={"list-group-item col-4 text-center"}>{orderedMeal.price}</li>
+                            <li className={"list-group-item col-4 text-center"}>{orderedMeal.count}</li>
                         </ul>
                     )
                 }

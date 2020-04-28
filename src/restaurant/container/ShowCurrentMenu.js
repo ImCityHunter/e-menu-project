@@ -1,8 +1,8 @@
 import React from "react";
-import ShowMenuItem from "../component/editMenu/ShowMenuItem";
+import ShowMenuTableItem from "../component/editMenu/ShowMenuTableItem";
 import menuService from "../../service/menuService";
 import {Link} from "react-router-dom";
-class ShowMenu extends React.Component {
+class ShowCurrentMenu extends React.Component {
     state = {
 
     }
@@ -18,16 +18,15 @@ class ShowMenu extends React.Component {
         return(
             <div className={"container"}>
                 <br />
-                <h1> Restaurant </h1>
-                <h2> Your Current Menu</h2>
+                <h1 className={"text-center"}> Restaurant </h1>
+                <h2 className={"text-center"}> Your Current Menu</h2>
                 <br />
-                <ShowMenuItem rid={this.props.rid}/>
+                <ShowMenuTableItem rid={this.props.rid}/>
                 <Link to={`/restaurant/${this.props.rid}/menu/edit-menu`} className={"btn btn-danger"}> Edit Menu </Link>
                 <button className={"btn btn-warning float-right"} onClick={()=>this.props.history.push(`/restaurant/${this.props.rid}`)}> Back </button>
-
             </div>
         )
     }
 }
 
-export default ShowMenu;
+export default ShowCurrentMenu;

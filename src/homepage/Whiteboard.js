@@ -1,14 +1,16 @@
 import React from "react";
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import RestaurantHomePage from "./RestaurantHomePage";
-import ShowMenu from "./ShowMenu";
-import EditMenu from "../component/editMenu/EditMenu";
-import Profile from "../../homepage/Profile";
-import Home from "../../homepage/Home";
-import Register from "../../homepage/Register";
-import Login from "../../homepage/Login";
-import InStoreOrder from "./InStoreOrder";
-import CustomerHomePage from "../../customer/container/CustomerHomePage";
+import RestaurantHomePage from "../restaurant/container/RestaurantHomePage";
+import ShowCurrentMenu from "../restaurant/container/ShowCurrentMenu";
+import EditMenuContainer from "../restaurant/container/EditMenuContainer";
+import Profile from "./Profile";
+import Home from "./Home";
+import Register from "./Register";
+import Login from "./Login";
+import InStoreOrder from "../restaurant/container/InStoreOrder";
+import CustomerHomePage from "../customer/container/CustomerHomePage";
+import IncompleteOrders from "../restaurant/component/showOrders/IncompleteOrders";
+import ShowOrderHistoryContainer from "../customer/container/ShowOrderHistoryContainer";
 
 class Whiteboard extends React.Component{
     render(){
@@ -25,7 +27,17 @@ class Whiteboard extends React.Component{
                     exact={true}
                     render={(props)=>
                         <CustomerHomePage
-                            rid = {props.match.params.cid}
+                            cid = {props.match.params.cid}
+                            {...props}
+                        />}
+                />
+
+                <Route
+                    path="/customer/:cid/orderhistory"
+                    exact={true}
+                    render={(props)=>
+                        <ShowOrderHistoryContainer
+                            cid = {props.match.params.cid}
                             {...props}
                         />}
                 />
@@ -38,6 +50,7 @@ class Whiteboard extends React.Component{
                             {...props}
                         />}
                 />
+
                 <Route
                     path="/restaurant/:rid"
                     exact={true}
@@ -59,10 +72,20 @@ class Whiteboard extends React.Component{
                 />
 
                 <Route
+                        path="/restaurant/:rid/incompleteOrders"
+                        exact={true}
+                        render={(props)=>
+                            <IncompleteOrders
+                                rid = {props.match.params.rid}
+                                {...props}
+                            />}
+                    />
+
+                <Route
                     path="/restaurant/:rid/menu"
                     exact={true}
                     render={(props)=>
-                        <ShowMenu
+                        <ShowCurrentMenu
                             rid = {props.match.params.rid}
                             {...props}
                         />}
@@ -72,7 +95,7 @@ class Whiteboard extends React.Component{
                     path="/restaurant/:rid/menu/edit-menu"
                     exact={true}
                     render={(props)=>
-                        <EditMenu
+                        <EditMenuContainer
                             rid = {props.match.params.rid}
                             {...props}
                         />}
