@@ -42,6 +42,7 @@ class Profile extends React.Component{
     render(){
         return(
                 <div className={"container"}>
+                    <br />
                     <h1 className={"text-center"}> Profile Page </h1>
                     <ul className={"list-group list-group-horizontal"}>
                         <li className={"list-group-item col-4"}>Your Username</li>

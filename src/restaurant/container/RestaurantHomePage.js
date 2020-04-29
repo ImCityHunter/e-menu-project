@@ -46,8 +46,15 @@ class RestaurantHomePage extends React.Component {
                 <h1 className={"text-center"}>Restaurant</h1>
                 <br/>
                 <div>
-                    <Link to={`/restaurant/${this.props.rid}/menu/InStoreOrder`}
-                          className={"btn btn-primary btn-block"}>In Store Order</Link>
+                    <Link to={{
+                        pathname: `/restaurant/${this.props.rid}/table/`,
+                        state:{
+
+                        }
+                    }}
+                          className={"btn btn-primary btn-block"}>
+                            In Store Order
+                    </Link>
                     <button
                         onClick={()=>this.props.history.push('/profile')}
                         className={"btn btn-warning btn-block"}>Back To User Profile</button>

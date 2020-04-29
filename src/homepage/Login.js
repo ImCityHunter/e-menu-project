@@ -25,9 +25,8 @@ class Login extends React.Component{
     render(){
         return(
             <div className={"container"}>
+                <br/>
                 <h1 className={"text-center"}>Login</h1>
-
-
                 <form>
                     <div className="form-group row">
                         <label htmlFor={this.state.user.username} className="col-sm-2 col-form-label">Username</label>

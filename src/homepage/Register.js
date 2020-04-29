@@ -38,11 +38,10 @@ class Register extends React.Component{
     render(){
         return(
             <div className={"container"}>
+                <br />
                 <h1 className={"text-center"}>
                     Register
                 </h1>
-
-
                 <form>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Username</label>

@@ -55,7 +55,10 @@ class IncompleteOrders extends React.Component{
                         this.state.orders && this.state.orders.map(order=>
                             <Card style={{ width: '18rem' }} key={order.id} className={"bg-light"}>
                                 <Card.Body>
-                                    <Card.Title>For {order.user.username}</Card.Title>
+                                    {
+                                        order.tableNumber &&
+                                        <Card.Title> For Table {order.tableNumber} </Card.Title>
+                                    }
                                     <Card.Text>
                                         {order.date}
                                     </Card.Text>

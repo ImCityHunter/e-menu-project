@@ -1,16 +1,25 @@
 import React from 'react';
 import orderService from "../../../service/orderService";
-import userService from "../../../service/userService";
 class CheckOutComponent extends React.Component{
     state = {
-        total: this.props.total,
         username:'',
         paymentInfo:'',
-        order: this.props.order
+        order:{}
     }
 
     makeAPayment = () => {
-        this.props.payment(this.props.rid,this.state.username);
+        orderService.createOrder(this.props.rid, this.state.username, this.state.order)
+            .then(status=> {
+                console.log(status);
+                //this.props.history.push(`/profile`);
+                this.props.history.push(`/restaurant/${this.props.rid}/table/`);
+            })
+    }
+
+    componentDidMount() {
+        this.setState({
+            order:this.props.location.state.order
+        })
     }
 
     render(){
@@ -19,7 +28,7 @@ class CheckOutComponent extends React.Component{
                 <br/>
                 <h1 className={"text-center"}>Sample CheckOut</h1>
                 <br/>
-                <h4 className={"text-center"}>Total Cost: ${this.props.total}</h4>
+                <h4 className={"text-center"}>Total Cost: ${this.state.order.cost}</h4>
 
                 <div className="form-group row">
                     <label htmlFor={this.state.username} className="col-sm-2 col-form-label">Customer Username</label>

@@ -11,6 +11,8 @@ import InStoreOrder from "../restaurant/container/InStoreOrder";
 import CustomerHomePage from "../customer/container/CustomerHomePage";
 import IncompleteOrders from "../restaurant/component/showOrders/IncompleteOrders";
 import ShowOrderHistoryContainer from "../customer/container/ShowOrderHistoryContainer";
+import EnterTableNumber from "../restaurant/component/inStoreOrder/EnterTableNumber";
+import CheckOutComponent from "../restaurant/component/inStoreOrder/CheckOutComponent";
 
 class Whiteboard extends React.Component{
     render(){
@@ -42,6 +44,8 @@ class Whiteboard extends React.Component{
                         />}
                 />
 
+
+
                 <Route
                     path="/"
                     exact={true}
@@ -70,6 +74,29 @@ class Whiteboard extends React.Component{
                             {...props}
                         />}
                 />
+
+                <Route
+                    path={"/restaurant/:rid/menu/InStoreOrder/checkout"}
+                    exact={true}
+                    render={(props)=>
+                        <CheckOutComponent
+                            rid = {props.match.params.rid}
+                            {...props}
+                        />
+                    }
+                />
+
+                <Route
+                    path="/restaurant/:rid/table/"
+                    exact={true}
+                    render={(props)=>
+                        <EnterTableNumber
+                            rid = {props.match.params.rid}
+                            {...props}
+                        />
+                    }
+                />
+
 
                 <Route
                         path="/restaurant/:rid/incompleteOrders"
