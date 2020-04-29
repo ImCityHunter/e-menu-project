@@ -1,7 +1,12 @@
-# wbdv-s2020-HoKang-Yu-FinalProject
-[Description](https://docs.google.com/document/d/15MdexRhb_bj57tCSDTYnTVwqin9Y62oLSSEQn9sO9ZE/edit) <br />
+# E-MENU Project
 
-Teammates / Github: <br />
-HoKang Yu, yu2749luca <br />
-Jiangchuan Wang,  agreeableness <br />
-Jinyang Zheng, Sjyzheng <br />
+## Summary
+This website is built intented to help restaurants to create their in-store digital menu, to avoid printing new paper copies. Our website allows restaurants to edit menu, also allows kitchens to see incoming orders. Registered customers can also login to see its past orders. 
+
+## Tools
+Frontend: front end uses react/bootstrap. [link](https://e-menu-management.herokuapp.com/)<br />
+Backend: backend uses springboot/jdbc [link](http://yu2749luca-spring-boot-server.herokuapp.com/) <br />
+
+## Testing Information
+Restaurant can login using `username:` admin, `password:` admin. <br />
+Customer can login using `username:` customer, `password:` customer. <br />
