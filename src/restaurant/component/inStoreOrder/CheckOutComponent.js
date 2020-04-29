@@ -2,7 +2,7 @@ import React from 'react';
 import orderService from "../../../service/orderService";
 class CheckOutComponent extends React.Component{
     state = {
-        username:'',
+        username:'sample: customer',
         paymentInfo:'',
         order:{}
     }

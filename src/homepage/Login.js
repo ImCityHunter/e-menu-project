@@ -18,8 +18,8 @@ class Login extends React.Component{
 
     state = {
         user:{
-            username:'',
-            password: '',
+            username:'sample: admin',
+            password: 'sample: admin',
         }
     }
     render(){
